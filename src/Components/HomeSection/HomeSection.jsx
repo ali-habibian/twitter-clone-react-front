@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import ImageIcon from '@mui/icons-material/Image';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
+import TweetCard from './TweetCard';
 
 const validationSchema = Yup.object().shape({
     content: Yup.string().required("Tweet text is required")
@@ -39,10 +40,13 @@ const HomeSection = () => {
 
     return (
         <div className='space-y-5'>
+
+            {/* Title */}
             <section>
                 <h1 className='py-5 text-xl font-bold opacity-90'>Home</h1>
             </section>
 
+            {/* Tweet input section */}
             <section className={`pb-10`}>
                 <div className='flex space-x-5'>
                     <Avatar
@@ -96,8 +100,9 @@ const HomeSection = () => {
                 </div>
             </section>
 
+            {/* TweetCard section */}
             <section>
-
+                {[1, 1, 1, 1, 1].map((item) => <TweetCard />)}
             </section>
         </div>
     )
