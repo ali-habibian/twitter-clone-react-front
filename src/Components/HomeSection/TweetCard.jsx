@@ -67,7 +67,11 @@ const TweetCard = () => {
                         <div className='flex cursor-pointer items-center space-x-2'>
                             <span className='font-semibold'>Code With Ali Habibian</span>
                             <span className='text-gray-600'>@alihabibian . 2m</span>
-                            <img className='ml-2 w-5 h-5' src="https://img.icons8.com/fluency/48/instagram-check-mark.png" alt="verify-mark" />
+                            <img
+                                className='ml-2 w-5 h-5'
+                                src="https://img.icons8.com/fluency/48/instagram-check-mark.png"
+                                alt="verify-mark"
+                            />
                         </div>
 
                         <div>
@@ -95,8 +99,11 @@ const TweetCard = () => {
                         </div>
                     </div>
                     <div className='mt-2'>
-                        <div className='cursor-pointer'>
-                            <p className='mb-2 p-0'>Tweeter clone - full stack project with spring boot and react - Tweeter clone - full stack project with spring boot and react</p>
+                        <div className='cursor-pointer' onClick={() => navigate(`/tweet/${3}`)}>
+                            <p className='mb-2 p-0'>
+                                Tweeter clone - full stack project with spring boot and react -
+                                Tweeter clone - full stack project with spring boot and react
+                            </p>
                             <img
                                 className='w-[28rem] border border-gray-400 rounded-md'
                                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQs6svVG0vNnM1qMy2JD57YQ0nFGQRuMdCEKg&usqp=CAU"
