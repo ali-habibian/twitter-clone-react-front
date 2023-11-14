@@ -11,8 +11,13 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import RepeatIcon from '@mui/icons-material/Repeat';
+import ReplayModal from './ReplayModal';
 
 const TweetCard = () => {
+
+    const [openReplayModal, setOpenReplayeModal] = React.useState(false);
+    const handleOpenReplayModel = () => setOpenReplayeModal(true);
+    const handleCloseReplayModel = () => setOpenReplayeModal(false);
 
     const navigate = useNavigate();
 
@@ -34,10 +39,6 @@ const TweetCard = () => {
 
     }
 
-    const handleOpenReplyModel = () => {
-        console.log("open model")
-    }
-
     const handleCreateRetweet = () => {
         console.log("handle Create Retweet")
     }
@@ -47,7 +48,7 @@ const TweetCard = () => {
     }
 
     return (
-        <div className=''>
+        <React.Fragment>
 
             {/* <div className='flex items-center font-semibold text-gray-700 py-2'>
             <RepeatIcon />
@@ -112,7 +113,7 @@ const TweetCard = () => {
 
                         <div className='py-5 flex flex-wrap justify-between items-center'>
                             <div className='space-x-3 flex items-center text-gray-600'>
-                                <ChatBubbleOutlineIcon className='cursor-pointer' onClick={handleOpenReplyModel} />
+                                <ChatBubbleOutlineIcon className='cursor-pointer' onClick={handleOpenReplayModel} />
                                 <p>43</p>
                             </div>
 
@@ -131,19 +132,21 @@ const TweetCard = () => {
                             </div>
 
                             <div className='space-x-3 flex items-center text-gray-600'>
-                                <BarChartIcon className='cursor-pointer' onClick={handleOpenReplyModel} />
+                                <BarChartIcon className='cursor-pointer' onClick={handleOpenReplayModel} />
                                 <p>430</p>
                             </div>
 
                             <div className='space-x-3 flex items-center text-gray-600'>
-                                <FileUploadIcon className='cursor-pointer' onClick={handleOpenReplyModel} />
+                                <FileUploadIcon className='cursor-pointer' onClick={handleOpenReplayModel} />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-        </div>
+            <section>
+                <ReplayModal handleClose={handleCloseReplayModel} open={openReplayModal} />
+            </section>
+        </React.Fragment>
     )
 }
 
