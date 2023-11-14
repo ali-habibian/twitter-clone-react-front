@@ -8,8 +8,13 @@ import { Avatar, Box, Button, Tab } from '@mui/material';
 import logo from '../../images/logo.png';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import TweetCard from '../HomeSection/TweetCard';
+import ProfileModal from './ProfileModal';
 
 const Profile = () => {
+
+    const [openProfileModal, setOpenProfileModal] = React.useState(false);
+    const handleOpenProfileModel = () => setOpenProfileModal(true);
+    const handleCloseProfileModel = () => setOpenProfileModal(false);
 
     const [tabValue, setTabValue] = React.useState('1');
 
@@ -26,10 +31,6 @@ const Profile = () => {
     const navigate = useNavigate()
 
     const handleBack = () => navigate(-1)
-
-    const handleOpenProfileModel = () => {
-        console.log("handleOpenProfileModel")
-    }
 
     const handleFollowUser = () => {
         console.log("handleFollowUser")
@@ -139,6 +140,10 @@ const Profile = () => {
                         <TabPanel value="4">likes</TabPanel>
                     </TabContext>
                 </Box>
+            </section>
+
+            <section>
+                <ProfileModal handleClose={handleCloseProfileModel} open={openProfileModal} />
             </section>
         </div>
     )
