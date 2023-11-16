@@ -3,8 +3,13 @@ import SearchIcon from '@mui/icons-material/Search';
 import Brightness6Icon from '@mui/icons-material/Brightness6';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { Button } from '@mui/material';
+import SubscriptionModal from '../SubscriptionModal/SubscriptionModal';
 
 function RightSection() {
+
+    const [openSubscriptionModal, setOpenSubscriptionModal] = React.useState(false);
+    const handleOpenSubscriptionModal = () => setOpenSubscriptionModal(true);
+    const handleCloseSubscriptionModal = () => setOpenSubscriptionModal(false);
 
     const handleChangeTheme = () => {
         console.log("handle Change Theme")
@@ -25,7 +30,11 @@ function RightSection() {
             <section className='my-5'>
                 <h1 className='text-xl font-bold'>Get Verified</h1>
                 <h1 className='font-bold my-2'>Subscribe to unlock new feathers</h1>
-                <Button variant='contained' sx={{ padding: "10px", paddingX: "20px", borderRadius: "25px" }}>
+                <Button
+                    onClick={handleOpenSubscriptionModal}
+                    variant='contained'
+                    sx={{ padding: "10px", paddingX: "20px", borderRadius: "25px" }}
+                >
                     Get Verified
                 </Button>
             </section>
@@ -46,7 +55,10 @@ function RightSection() {
                     </div>
                     <MoreHorizIcon />
                 </div>)}
+            </section>
 
+            <section>
+                <SubscriptionModal open={openSubscriptionModal} handleClose={handleCloseSubscriptionModal} />
             </section>
         </div>
     )
