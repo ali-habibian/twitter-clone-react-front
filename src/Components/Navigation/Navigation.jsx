@@ -6,23 +6,28 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../../images/logo.png';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../Store/Auth/Action';
 
 const Navigation = () => {
 
     const { auth } = useSelector(store => store)
-
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const dispatch = useDispatch();
+
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
+
     const handleClose = () => {
         setAnchorEl(null);
     };
+
     const handleLogout = () => {
         console.log("logout")
         handleClose()
+        dispatch(logout())
     }
 
     const navigate = useNavigate();

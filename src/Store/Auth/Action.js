@@ -1,11 +1,11 @@
 import axios from "axios"
 import { API_BASE_URL } from "../../Config/api";
-import { GET_USER_PROFILE_FAILURE, GET_USER_PROFILE_SUCCESS, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, REGISTER_USER_FAILURE, REGISTER_USER_SUCCESS } from "./ActionType";
+import { GET_USER_PROFILE_FAILURE, GET_USER_PROFILE_SUCCESS, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, LOGOUT, REGISTER_USER_FAILURE, REGISTER_USER_SUCCESS } from "./ActionType";
 
 export const loginUser = (loginData) => async (dispatch) => {
     try {
         const { data } = await axios.post(`${API_BASE_URL}/auth/signin`, loginData)
-        console.log("Logged in user ",data)
+        console.log("Logged in user ", data)
         if (data.jwt) {
             localStorage.setItem("jwt", data.jwt)
         }
@@ -45,4 +45,9 @@ export const getUserProfile = (jwt) => async (dispatch) => {
         console.log("error", error)
         dispatch({ type: GET_USER_PROFILE_FAILURE, payload: error.message })
     }
+}
+
+export const logout = (jwt) => async (dispatch) => {
+    localStorage.removeItem("jwt")
+    dispatch({ type: LOGOUT, payload: null })
 }
