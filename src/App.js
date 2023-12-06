@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import Authentication from './Components/Authentication/Authentication';
 import HomePage from './Components/HomePage/HomePage';
 import { useEffect } from 'react';
@@ -11,10 +11,12 @@ function App() {
   const jwt = localStorage.getItem("jwt")
   const { auth } = useSelector(store => store)
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (jwt) {
       dispatch(getUserProfile(jwt))
+      navigate("/")
     }
   }, [auth.jwt])
 
