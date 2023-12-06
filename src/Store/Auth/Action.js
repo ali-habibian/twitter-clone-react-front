@@ -1,11 +1,11 @@
-import axios from "axios";
-import { API_BASE_URL } from "../Config/api";
+import axios from "axios"
+import { API_BASE_URL } from "../../Config/api";
 import { GET_USER_PROFILE_FAILURE, GET_USER_PROFILE_SUCCESS, LOGIN_USER_FAILURE, LOGIN_USER_SUCCESS, REGISTER_USER_FAILURE, REGISTER_USER_SUCCESS } from "./ActionType";
 
 export const loginUser = (loginData) => async (dispatch) => {
     try {
         const { data } = await axios.post(`${API_BASE_URL}/auth/signin`, loginData)
-
+        console.log("Logged in user ",data)
         if (data.jwt) {
             localStorage.setItem("jwt", data.jwt)
         }
@@ -20,7 +20,7 @@ export const loginUser = (loginData) => async (dispatch) => {
 export const registerUser = (registerData) => async (dispatch) => {
     try {
         const { data } = await axios.post(`${API_BASE_URL}/auth/signup`, registerData)
-
+        console.log("Signed up user ", data)
         if (data.jwt) {
             localStorage.setItem("jwt", data.jwt)
         }
@@ -35,7 +35,9 @@ export const registerUser = (registerData) => async (dispatch) => {
 export const getUserProfile = (jwt) => async (dispatch) => {
     try {
         const { data } = await axios.get(`${API_BASE_URL}/api/users/profile`, {
-            "Authorization": `Bearer ${jwt}`
+            headers: {
+                "Authorization": `Bearer ${jwt}`
+            }
         })
 
         dispatch({ type: GET_USER_PROFILE_SUCCESS, payload: data })

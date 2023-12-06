@@ -6,8 +6,11 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import logo from '../../images/logo.png';
+import { useSelector } from 'react-redux';
 
 const Navigation = () => {
+
+    const { auth } = useSelector(store => store)
 
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
@@ -61,16 +64,9 @@ const Navigation = () => {
                         sx={{ width: 50, height: 50 }} />
 
                     <div>
-                        <span>Code With Ali Habibian </span>
-                        <span>
-                            <a
-                                className='opacity-70'
-                                href="https://github.com/ali-habibian/"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                @alihabibian
-                            </a>
+                        <span>{auth.user?.fullname} </span>
+                        <span className='opacity-70'>
+                            @{auth.user?.fullname.split(" ").join("_").toLowerCase()}
                         </span>
                     </div>
 

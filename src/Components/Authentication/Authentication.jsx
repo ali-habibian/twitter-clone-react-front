@@ -1,8 +1,13 @@
 import React from 'react'
 import { Button, Grid } from '@mui/material'
 import { GoogleLogin } from '@react-oauth/google'
+import AuthModal from './AuthModal'
 
 const Authentication = () => {
+
+    const [openAuthModal, setOpenAuthModal] = React.useState(false);
+    const handleOpenAuthModal = () => setOpenAuthModal(true);
+    const handleCloseAuthModal = () => setOpenAuthModal(false);
     return (
         <div>
             <Grid className='overflow-y-hidden' container>
@@ -26,9 +31,9 @@ const Authentication = () => {
 
                     <div className='w-[60%]'>
                         <div className='w-full'>
-                            <GoogleLogin width='100%' />
+                            <GoogleLogin />
                             <p className='py-5 text-center'>OR</p>
-                            <Button fullWidth variant='contained' size='large' sx={{ borderRadius: "25px", py: "7px" }}>
+                            <Button onClick={handleOpenAuthModal} fullWidth variant='contained' size='large' sx={{ borderRadius: "25px", py: "7px" }}>
                                 Sign Up with Email
                             </Button>
                             <p className='text-sm mt-2'>By signing up, you agree to the Terms of Service and Privacy Policy, including Cookie Use.</p>
@@ -36,13 +41,15 @@ const Authentication = () => {
 
                         <div className='mt-10'>
                             <h1 className='font-bold text-xl mb-5'>Already have an account?</h1>
-                            <Button fullWidth variant='outlined' size='large' sx={{ borderRadius: "25px", py: "7px" }}>
-                                Log In
+                            <Button onClick={handleOpenAuthModal} fullWidth variant='outlined' size='large' sx={{ borderRadius: "25px", py: "7px" }}>
+                                Login
                             </Button>
                         </div>
                     </div>
                 </Grid>
             </Grid>
+
+            <AuthModal open={openAuthModal} handleClose={handleCloseAuthModal} />
         </div>
     )
 }
